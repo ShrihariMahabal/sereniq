@@ -24,6 +24,14 @@ export default function RegisterScreen() {
       });
 
       if (error) throw error;
+      
+      const user_id = data.user.id;
+
+      const {error1} = await supabase.from('users').insert(
+        {id: user_id, email: email, password: password}
+      )
+
+      if (error1) throw error1;
 
       Alert.alert(
         'Success',
